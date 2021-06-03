@@ -9,7 +9,7 @@
 </body>
 <h2>Nasi najlepsi:</h2>
 <table>
-    <th>Nazwa</th>
+    <th>Nazwa użytkownika</th>
     <th>Wykonane kroki</th>
     <tr>
         <c:forEach items="${topUserList}" var="t">

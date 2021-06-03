@@ -6,4 +6,7 @@
 <a href="${pageContext.request.contextPath}/user/groups">Moje grupy</a>
 <a href="${pageContext.request.contextPath}/user/friends">Znajomi</a>
 <a href="${pageContext.request.contextPath}/user/account">Moje konto</a>
-<a href="${pageContext.request.contextPath}/admin/allUsers">Użytkownicy(tylko dla admina)</a>
+<sec:authorize access="hasRole('ADMIN')">
+    <a href="${pageContext.request.contextPath}/admin/allUsers">Użytkownicy(tylko dla admina)</a>
+</sec:authorize>
+<a href="${pageContext.request.contextPath}/logout">Wyloguj</a>

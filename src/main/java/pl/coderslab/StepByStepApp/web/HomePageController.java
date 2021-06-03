@@ -45,8 +45,9 @@ public class HomePageController {
                 return "registerUser";
             }
             userService.addNewUser(user);
+            return "redirect:/login";
         }
-        return "redirect:/login";
+        return "redirect:/";
     }
 
     @GetMapping("/contact")
@@ -64,5 +65,10 @@ public class HomePageController {
     @GetMapping("/about")
     public String getAboutPage(){
         return "about";
+    }
+
+    @GetMapping("/logout")
+    public String getLogoutPage(){
+        return "logout";
     }
 }

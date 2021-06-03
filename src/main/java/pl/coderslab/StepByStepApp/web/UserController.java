@@ -2,15 +2,14 @@ package pl.coderslab.StepByStepApp.web;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.StepByStepApp.entity.User;
+import pl.coderslab.StepByStepApp.security.CurrentUser;
 import pl.coderslab.StepByStepApp.service.ActivityService;
 import pl.coderslab.StepByStepApp.service.UserService;
 
-import javax.validation.Valid;
 
 
 @Controller
@@ -26,14 +25,16 @@ public class UserController {
         this.activityService = activityService;
     }
 
-    @GetMapping("/activities/{userId}")
-    public String getUserActivities(Model model,@PathVariable Long userId) {
+    @GetMapping("/activities/")
+    public String getUserActivities(@AuthenticationPrincipal CurrentUser principal,Model model, @PathVariable Long userId) {
         model.addAttribute("userActivities", activityService.findAllActivitiesForUser(userId));
         return "user/activities";
     }
 
     @GetMapping("/dashboard")
-    public String getUserDashboard() {
+    public String getUserDashboard(@AuthenticationPrincipal CurrentUser principal) {
+                System.out.println(principal.getUser());
+
         return "user/dashboard";
     }
 
