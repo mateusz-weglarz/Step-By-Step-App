@@ -25,15 +25,15 @@ public class UserController {
         this.activityService = activityService;
     }
 
-    @GetMapping("/activities/")
-    public String getUserActivities(@AuthenticationPrincipal CurrentUser principal,Model model, @PathVariable Long userId) {
-        model.addAttribute("userActivities", activityService.findAllActivitiesForUser(userId));
+    @GetMapping("/activities")
+    public String getUserActivities(@AuthenticationPrincipal CurrentUser currentUser,Model model) {
+        model.addAttribute("userActivities", activityService.findAllActivitiesForUser(currentUser.getUser().getId()));
         return "user/activities";
     }
 
     @GetMapping("/dashboard")
-    public String getUserDashboard(@AuthenticationPrincipal CurrentUser principal) {
-                System.out.println(principal.getUser());
+    public String getUserDashboard(@AuthenticationPrincipal CurrentUser currentUser) {
+                System.out.println(currentUser.getUser());
 
         return "user/dashboard";
     }

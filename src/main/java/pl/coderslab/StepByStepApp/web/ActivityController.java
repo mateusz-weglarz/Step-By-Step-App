@@ -1,10 +1,12 @@
 package pl.coderslab.StepByStepApp.web;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.StepByStepApp.entity.Activity;
+import pl.coderslab.StepByStepApp.security.CurrentUser;
 import pl.coderslab.StepByStepApp.service.ActivityService;
 
 import javax.validation.Valid;
@@ -37,25 +39,30 @@ public class ActivityController {
     }
 
     @GetMapping("/delete/{activityId}")
-    public String deleteActivity(Model model, @PathVariable Long activityId) {
-        model.addAttribute("activityToDelete", activityService.findActivityById(activityId));
+    public String deleteActivity(Model model, @PathVariable Long activityId,@AuthenticationPrincipal CurrentUser currentUser) {
+        Activity activityById = activityService.findActivityById(activityId);
+        if (!activityById.getUser().getId().equals(currentUser.getUser().getId())){
+            return "redirect:/user/activities";
+        }
+        model.addAttribute("activityToDelete",activityById);
         return "activity/delete";
     }
 
-    @PostMapping("/delete")
-    public String deleteActivityPerform(@Valid Activity activity,BindingResult result,@RequestParam String confirm){
-        if(confirm.equals("delete")){
-            if (result.hasErrors()){
-                return "activity/delete";
-            }
-            activityService.deleteActivity(activity.getId());
+    @PostMapping("/delete/{activityId}")
+    public String deleteActivityPerform(@RequestParam String confirm, @PathVariable Long activityId,@AuthenticationPrincipal CurrentUser currentUser) {
+        Activity activityById = activityService.findActivityById(activityId);
+        if (!activityById.getUser().getId().equals(currentUser.getUser().getId())){
+            return "redirect:/user/activities";
         }
-        return "redirect:/user/activities/{userID}";
+        if (confirm.equals("delete")) {
+            activityService.deleteActivity(activityId);
+        }
+        return "redirect:/user/activities";
     }
 
     @GetMapping("/show/{activityId}")
-    public String showActivity(Model model, @PathVariable Long activityId){
-        model.addAttribute("activityToShow",activityService.findActivityById(activityId));
+    public String showActivity(Model model, @PathVariable Long activityId) {
+        model.addAttribute("activityToShow", activityService.findActivityById(activityId));
         return "activity/show";
     }
 

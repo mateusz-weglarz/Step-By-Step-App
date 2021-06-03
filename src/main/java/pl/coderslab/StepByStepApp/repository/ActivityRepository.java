@@ -10,10 +10,10 @@ import java.util.List;
 @Repository
 public interface ActivityRepository extends JpaRepository<Activity,Long> {
 
-    @Query(value = "SELECT * FROM activities a INNER JOIN users u where u.id=:id ORDER BY created DESC", nativeQuery = true)
+    @Query(value = "SELECT * FROM activities a where user_id=:id ORDER BY a.created DESC", nativeQuery = true)
     List<Activity> findActivitiesByUserId(Long id);
 
-    @Query(value = "SELECT * FROM activities a INNER JOIN users u where u.id=:id ORDER BY created DESC limit 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM activities a where user_id=:id ORDER BY a.created DESC limit 1", nativeQuery = true)
     Activity findLastActivityOfUserByUserId(Long id);
 
     @Query(value = "SELECT * from activities a ORDER BY numberOfSteps DESC LIMIT 5",nativeQuery = true)
