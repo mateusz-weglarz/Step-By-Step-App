@@ -30,11 +30,9 @@ public class Activity {
     }
 
 
-
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -87,5 +85,17 @@ public class Activity {
     @PreUpdate
     public void preUpdate() {
         this.updated = LocalDateTime.now();
+    }
+
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "id=" + id +
+                ", user=" + user +
+                ", name='" + name + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", numberOfSteps=" + numberOfSteps +
+                '}';
     }
 }

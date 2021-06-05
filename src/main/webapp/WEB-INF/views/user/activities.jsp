@@ -23,4 +23,5 @@
     </tr>
     </c:forEach>
 </table>
+<a href="${pageContext.request.contextPath}/user/dashboard">Powrót</a>
 </html>

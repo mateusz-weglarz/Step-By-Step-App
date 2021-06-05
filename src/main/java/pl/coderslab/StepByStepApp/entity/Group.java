@@ -16,7 +16,7 @@ public class Group {
     private String description;
     private LocalDateTime created;
     private LocalDateTime updated;
-    private int goal;
+    private Integer goal;
     @ManyToMany(mappedBy = "groupList")
     private List<User> members = new ArrayList<>();
 
@@ -83,11 +83,11 @@ public class Group {
         this.updated = updated;
     }
 
-    public int getGoal() {
+    public Integer getGoal() {
         return goal;
     }
 
-    public void setGoal(int goal) {
+    public void setGoal(Integer goal) {
         this.goal = goal;
     }
 

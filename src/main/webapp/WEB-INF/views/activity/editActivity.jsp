@@ -13,9 +13,8 @@
 </style>
 </body>
 <form:form method="post" action="/activity/edit" modelAttribute="activityToEdit">
-    <form:hidden path="created" value="${activityToEdit.created}"/>
-    <form:hidden path="draft" value="false"/>
-    <br><label for="name">Podaj imię:</label>
+    <form:hidden path="user" value="${activityToEdit.user.id}"/>
+    <br><label for="name">Podaj nazwę aktywności:</label>
     <form:input path="name" type="text" id="name"/>
     <form:errors path="name" cssClass="errors"/>
     <br><button name="button" type="submit" value="save" >Zapisz edycję</button>
