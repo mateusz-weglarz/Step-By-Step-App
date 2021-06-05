@@ -1,8 +1,8 @@
 package pl.coderslab.StepByStepApp.entity;
 
 import org.hibernate.validator.constraints.Length;
-import pl.coderslab.StepByStepApp.vidators.ValidationPassword;
-import pl.coderslab.StepByStepApp.vidators.ValidationUserDetails;
+import pl.coderslab.StepByStepApp.validators.ValidationPassword;
+import pl.coderslab.StepByStepApp.validators.ValidationUserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.StepByStepApp.entity.User;
 import pl.coderslab.StepByStepApp.service.ActivityService;
 import pl.coderslab.StepByStepApp.service.UserService;
-import pl.coderslab.StepByStepApp.vidators.ValidationPassword;
-import pl.coderslab.StepByStepApp.vidators.ValidationUserDetails;
+import pl.coderslab.StepByStepApp.validators.ValidationPassword;
+import pl.coderslab.StepByStepApp.validators.ValidationUserDetails;
 
 
 
