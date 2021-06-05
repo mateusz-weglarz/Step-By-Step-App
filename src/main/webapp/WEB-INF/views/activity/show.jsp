@@ -11,16 +11,18 @@
 <table>
     <th>Nazwa aktywności</th>
     <th>Data wykonania</th>
+    <th>Data ostatniej aktualizacji</th>
     <th>Wykonane kroki</th>
+    <th>Użytkownik</th>
     <tr>
-        <c:forEach items="${activityToShow}" var="ats">
-        <td>${ats.name}</td>
-        <td>${ats.created}</td>
-        <td>${ats.numberOfSteps}</td>
-        <td><a href="${pageContext.request.contextPath}/activity/edit/${ats.id}">Edytuj aktywność</a></td>
-        <td><a href="${pageContext.request.contextPath}/activity/delete/${ats.id}">Usuń aktywność</a></td>
+        <td>${activityToShow.name}</td>
+        <td>${activityToShow.created}</td>
+        <td>${activityToShow.updated}</td>
+        <td>${activityToShow.numberOfSteps}</td>
+        <td>${activityToShow.user.userName}</td>
+        <td><a href="${pageContext.request.contextPath}/activity/edit/${activityToShow.id}">Edytuj aktywność</a></td>
+        <td><a href="${pageContext.request.contextPath}/activity/delete/${activityToShow.id}">Usuń aktywność</a></td>
     </tr>
-    </c:forEach>
 </table>
 <a href="${pageContext.request.contextPath}/user/activities">Powrót do listy aktywności</a>
 </html>

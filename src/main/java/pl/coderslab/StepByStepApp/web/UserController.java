@@ -32,9 +32,8 @@ public class UserController {
     }
 
     @GetMapping("/dashboard")
-    public String getUserDashboard(@AuthenticationPrincipal CurrentUser currentUser) {
-                System.out.println(currentUser.getUser());
-
+    public String getUserDashboard(@AuthenticationPrincipal CurrentUser currentUser,Model model) {
+        model.addAttribute("userFirstname", currentUser.getUser().getFirstName());
         return "user/dashboard";
     }
 

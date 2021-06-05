@@ -7,18 +7,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.StepByStepApp.entity.User;
+import pl.coderslab.StepByStepApp.service.ActivityService;
 import pl.coderslab.StepByStepApp.service.UserService;
 
 import javax.validation.Valid;
-import java.util.List;
+
 
 @Controller
 public class HomePageController {
 
     private final UserService userService;
+    private final ActivityService activityService;
 
-    public HomePageController(UserService userService) {
+    public HomePageController(UserService userService, ActivityService activityService) {
         this.userService = userService;
+        this.activityService = activityService;
     }
 
     @GetMapping("/")
@@ -57,8 +60,8 @@ public class HomePageController {
 
     @GetMapping("/top")
     public String getTopPage(Model model){
-        List<User> topFiveUsers = userService.findTopFiveUsers();
-        model.addAttribute("topUserList",topFiveUsers);
+        model.addAttribute("topUserList",userService.findTopFiveUsers());
+        model.addAttribute("topActivityList",activityService.findTop5Activities());
         return "top";
     }
 

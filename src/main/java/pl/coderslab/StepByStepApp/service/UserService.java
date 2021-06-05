@@ -81,4 +81,12 @@ public class UserService {
     public List<User> findTopFiveUsers(){
         return userRepository.findTopFiveUsers();
     }
+
+    public User findUserById(Long id){
+        Optional<User> userOptional = userRepository.findById(id);
+        if(userOptional.isEmpty()){
+            throw new IllegalStateException("Taki użytkownik nie istnieje");
+        }
+        return userOptional.get();
+    }
 }
