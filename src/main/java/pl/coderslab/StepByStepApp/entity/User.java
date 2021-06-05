@@ -185,22 +185,4 @@ public class User {
         this.updated = LocalDateTime.now();
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", globalNumberOfSteps=" + globalNumberOfSteps +
-                ", created=" + created +
-                ", updated=" + updated +
-                ", enabled=" + enabled +
-                ", activitiesList=" + activitiesList +
-                ", groupList=" + groupList +
-                ", roles=" + roles +
-                '}';
-    }
 }
