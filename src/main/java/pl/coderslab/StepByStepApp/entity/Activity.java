@@ -87,15 +87,4 @@ public class Activity {
         this.updated = LocalDateTime.now();
     }
 
-    @Override
-    public String toString() {
-        return "Activity{" +
-                "id=" + id +
-                ", user=" + user +
-                ", name='" + name + '\'' +
-                ", created=" + created +
-                ", updated=" + updated +
-                ", numberOfSteps=" + numberOfSteps +
-                '}';
-    }
 }

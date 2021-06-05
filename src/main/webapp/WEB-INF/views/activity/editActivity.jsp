@@ -13,6 +13,7 @@
 </style>
 </body>
 <form:form method="post" action="/activity/edit" modelAttribute="activityToEdit">
+    <form:hidden path="id" value="${activityToEdit.id}"/>
     <form:hidden path="user" value="${activityToEdit.user.id}"/>
     <br><label for="name">Podaj nazwę aktywności:</label>
     <form:input path="name" type="text" id="name"/>
