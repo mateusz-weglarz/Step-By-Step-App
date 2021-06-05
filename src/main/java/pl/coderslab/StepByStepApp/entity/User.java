@@ -1,6 +1,8 @@
 package pl.coderslab.StepByStepApp.entity;
 
 import org.hibernate.validator.constraints.Length;
+import pl.coderslab.StepByStepApp.vidators.ValidationPassword;
+import pl.coderslab.StepByStepApp.vidators.ValidationUserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -16,27 +18,28 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Length(min = 3, message = "Imię musi składać się przynajmniej z 3 liter")
-    @NotBlank(message = "Podaj imię")
+    @Length(min = 3, message = "Imię musi składać się przynajmniej z 3 liter", groups = ValidationUserDetails.class)
+    @NotBlank(message = "Podaj imię", groups = ValidationUserDetails.class)
     private String firstName;
-    @Length(min = 3, message = "Nazwisko musi składać się przynajmniej z 3 liter")
-    @NotBlank(message = "Podaj nazwisko")
+    @Length(min = 3, message = "Nazwisko musi składać się przynajmniej z 3 liter", groups = ValidationUserDetails.class)
+    @NotBlank(message = "Podaj nazwisko", groups = ValidationUserDetails.class)
     private String lastName;
     @Column(nullable = false, unique = true, length = 60)
-    @Length(min = 5, message = "Nazwa użytkownika musi składać się przynajmniej z 5 znaków")
-    @NotBlank(message = "Podaj nazwę użytkownika")
+    @Length(min = 5, message = "Nazwa użytkownika musi składać się przynajmniej z 5 znaków", groups = ValidationUserDetails.class)
+    @NotBlank(message = "Podaj nazwę użytkownika", groups = ValidationUserDetails.class)
     private String userName;
     @Column(nullable = false, unique = true, length = 60)
-    @Email(message = "Podaj poprawny adres Email")
-    @NotBlank(message = "Podaj adres email")
+    @Email(message = "Podaj poprawny adres Email", groups = ValidationUserDetails.class)
+    @NotBlank(message = "Podaj adres email", groups = ValidationUserDetails.class)
     private String email;
-    @Length(min = 8, message = "Twoje hasło musi zawierać przynajmniej 8 znaków")
-    @NotBlank(message = "Podaj hasło")
+    @Length(min = 8, message = "Twoje hasło musi zawierać przynajmniej 8 znaków", groups = ValidationPassword.class)
+    @NotBlank(message = "Podaj hasło", groups = ValidationPassword.class)
     private String password;
     private int globalNumberOfSteps;
     private LocalDateTime created;
     private LocalDateTime updated;
-    private Boolean enabled;;
+    private Boolean enabled;
+    ;
     @OneToMany(mappedBy = "user")
     private List<Activity> activitiesList = new ArrayList<>();
     @ManyToMany(fetch = FetchType.EAGER)
@@ -95,6 +98,7 @@ public class User {
     public Boolean getEnabled() {
         return enabled;
     }
+
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
@@ -179,5 +183,24 @@ public class User {
     @PreUpdate
     public void preUpdate() {
         this.updated = LocalDateTime.now();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", globalNumberOfSteps=" + globalNumberOfSteps +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", enabled=" + enabled +
+                ", activitiesList=" + activitiesList +
+                ", groupList=" + groupList +
+                ", roles=" + roles +
+                '}';
     }
 }

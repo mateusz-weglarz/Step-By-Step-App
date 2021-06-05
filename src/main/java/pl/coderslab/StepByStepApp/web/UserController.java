@@ -33,13 +33,9 @@ public class UserController {
 
     @GetMapping("/dashboard")
     public String getUserDashboard(@AuthenticationPrincipal CurrentUser currentUser,Model model) {
-        model.addAttribute("userFirstname", currentUser.getUser().getFirstName());
+        model.addAttribute("user", userService.findUserById(currentUser.getUser().getId()));
+        model.addAttribute("globalNumberOfSteps",activityService.getTotalNumberOfSteps(currentUser.getUser().getId()));
         return "user/dashboard";
-    }
-
-    @GetMapping("/account")
-    public String getUserAccount() {
-        return "user/account";
     }
 
     @GetMapping("/friends")

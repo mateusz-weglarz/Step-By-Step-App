@@ -3,14 +3,16 @@ package pl.coderslab.StepByStepApp.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.StepByStepApp.entity.User;
 import pl.coderslab.StepByStepApp.service.ActivityService;
 import pl.coderslab.StepByStepApp.service.UserService;
+import pl.coderslab.StepByStepApp.vidators.ValidationPassword;
+import pl.coderslab.StepByStepApp.vidators.ValidationUserDetails;
 
-import javax.validation.Valid;
 
 
 @Controller
@@ -42,7 +44,7 @@ public class HomePageController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@Valid User user, BindingResult result, @RequestParam String button) {
+    public String registerUser(@Validated({ValidationUserDetails.class, ValidationPassword.class}) User user, BindingResult result, @RequestParam String button) {
         if (button.equals("save")) {
             if (result.hasErrors()) {
                 return "registerUser";

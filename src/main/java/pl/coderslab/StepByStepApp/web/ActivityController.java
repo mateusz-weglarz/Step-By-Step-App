@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.StepByStepApp.entity.Activity;
 import pl.coderslab.StepByStepApp.security.CurrentUser;
 import pl.coderslab.StepByStepApp.service.ActivityService;
-import pl.coderslab.StepByStepApp.service.UserService;
 
 import javax.validation.Valid;
 
@@ -17,11 +16,9 @@ import javax.validation.Valid;
 public class ActivityController {
 
     private final ActivityService activityService;
-    private final UserService userService;
 
-    public ActivityController(ActivityService activityService, UserService userService) {
+    public ActivityController(ActivityService activityService) {
         this.activityService = activityService;
-        this.userService = userService;
     }
 
     @GetMapping("/edit/{activityId}")
@@ -31,7 +28,7 @@ public class ActivityController {
             return "redirect:/user/activities";
         }
         model.addAttribute("activityToEdit", activityById);
-        return "activity/edit";
+        return "activity/editActivity";
     }
 
     @PostMapping("/edit")
@@ -41,8 +38,7 @@ public class ActivityController {
         }
         if (button.equals("save")) {
             if (result.hasErrors()) {
-                System.out.println(result);
-                return "activity/edit";
+                return "activity/editActivity";
             }
             activityService.updateActivity(activity);
         }
@@ -56,7 +52,7 @@ public class ActivityController {
             return "redirect:/user/activities";
         }
         model.addAttribute("activityToDelete", activityById);
-        return "activity/delete";
+        return "activity/deleteActivity";
     }
 
     @PostMapping("/delete/{activityId}")
@@ -72,14 +68,13 @@ public class ActivityController {
     }
 
     @GetMapping("/show/{activityId}")
-    public String showActivity(Model model, @PathVariable Long activityId,@AuthenticationPrincipal CurrentUser currentUser) {
+    public String showActivity(Model model, @PathVariable Long activityId, @AuthenticationPrincipal CurrentUser currentUser) {
         Activity activityToShow = activityService.findActivityById(activityId);
-        if(!activityToShow.getUser().getId().equals(currentUser.getUser().getId())){
+        if (!activityToShow.getUser().getId().equals(currentUser.getUser().getId())) {
             return "redirect:/user/activities";
         }
-        model.addAttribute("activityToShow",activityToShow);
-        return "activity/show";
+        model.addAttribute("activityToShow", activityToShow);
+        return "activity/showActivity";
     }
 
-    //TODO:Dodać aktywność przesłaną z telefonu
 }
