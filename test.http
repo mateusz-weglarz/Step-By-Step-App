@@ -1,0 +1,5 @@
+POST https://stepp-by-stepp-app.herokuapp.com/api/activities
+Authorization: Basic dGVzdHVzZXI6aGFzbG90ZXN0
+content-type: application/x-www-form-urlencoded; charset=UTF-8
+
+numberOfSteps=19
