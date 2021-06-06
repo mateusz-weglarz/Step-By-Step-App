@@ -128,4 +128,17 @@ public class Group {
         this.updated = LocalDateTime.now();
     }
 
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", goal=" + goal +
+                ", members=" + members +
+                ", groupAdminId=" + groupAdminId +
+                '}';
+    }
 }

@@ -56,12 +56,12 @@ public class ActivityController {
     }
 
     @PostMapping("/delete/{activityId}")
-    public String deleteActivityPerform(@RequestParam String confirm, @PathVariable Long activityId, @AuthenticationPrincipal CurrentUser currentUser) {
+    public String deleteActivityPerform(@RequestParam String button, @PathVariable Long activityId, @AuthenticationPrincipal CurrentUser currentUser) {
         Activity activityById = activityService.findActivityById(activityId);
         if (!activityById.getUser().getId().equals(currentUser.getUser().getId())) {
             return "redirect:/user/activities";
         }
-        if (confirm.equals("delete")) {
+        if (button.equals("delete")) {
             activityService.deleteActivity(activityId);
         }
         return "redirect:/user/activities";

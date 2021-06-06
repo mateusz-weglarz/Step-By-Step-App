@@ -17,6 +17,9 @@
         <td>${gl.name}</td>
         <td>${gl.description}</td>
         <td>${gl.created}</td>
+        <td><a href="${pageContext.request.contextPath}/user/groups/details/${gl.id}">Szczegóły grupy</a></td>
+        <td><a href="${pageContext.request.contextPath}/user/groups/edit/${gl.id}">Edytuj grupę</a></td>
+        <td><a href="${pageContext.request.contextPath}/user/groups/delete/${gl.id}">Usuń grupę</a></td>
     </tr>
     </c:forEach>
 </table>

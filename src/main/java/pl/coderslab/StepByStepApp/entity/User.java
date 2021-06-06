@@ -41,7 +41,7 @@ public class User {
     private Boolean enabled;
     @OneToMany(mappedBy = "user")
     private List<Activity> activitiesList = new ArrayList<>();
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "user_groups")
     private List<Group> groupList = new ArrayList<>();
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

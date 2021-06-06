@@ -6,5 +6,6 @@
 </head>
 <body>
 <h1>Dostęp zabroniony</h1>
+<a href="${pageContext.request.contextPath}/user/dashboard">Strona główna</a>
 </body>
 </html>

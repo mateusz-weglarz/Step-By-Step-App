@@ -10,9 +10,7 @@ import pl.coderslab.StepByStepApp.repository.RoleRepository;
 import pl.coderslab.StepByStepApp.repository.UserRepository;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 
 @Service
@@ -30,7 +28,7 @@ public class GroupService {
     }
 
     public void removeUserFromGroups(User user) {
-        groupRepository.deleteUserFromGroup(user.getId());
+        groupRepository.deleteUserFromGroupsByUserId(user.getId());
     }
 
     public List<Group> findGroupsByUserId(Long userId) {
@@ -50,8 +48,12 @@ public class GroupService {
         Set<Role> userRoles = user.getRoles();
         userRoles.add(userNewRole);
         user.setRoles(userRoles);
-        userRepository.save(user);
+        group.setGroupAdminId(user.getId());
+        List<Group> groupList = user.getGroupList();
+        groupList.add(group);
+        user.setGroupList(groupList);
         groupRepository.save(group);
+        userRepository.save(user);
     }
 
     public List<Group> findAllGroups() {
@@ -84,4 +86,20 @@ public class GroupService {
         return false;
     }
 
+    public void updateGroup(Group groupToUpdate) {
+        Group group = groupRepository.findById(groupToUpdate.getId()).orElseThrow(() -> new IllegalStateException("Taka grupa nie istnieje"));
+        group.setName(groupToUpdate.getName());
+        group.setDescription(groupToUpdate.getDescription());
+        group.setGoal(groupToUpdate.getGoal());
+        groupRepository.save(group);
+    }
+
+    public void deleteGroup(Long groupId) {
+        boolean exists = groupRepository.existsById(groupId);
+        if (!exists) {
+            throw new IllegalStateException("Taka grupa nie istnieje");
+        }
+        groupRepository.deleteUserFromGroupByGroupId(groupId);
+        groupRepository.deleteById(groupId);
+    }
 }

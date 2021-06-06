@@ -7,7 +7,7 @@
 </head>
 <body>
 </body>
-<h1>założenie, dodanie, podanie, usunięcie, wypisanie się, wiadomość do grupy?,lista
+<h1>założenie, dodanie, podanie, wypisanie się, wiadomość do grupy?,lista
     członków?</h1>
 <h2>Lista grup użytkownika</h2>
 <table>
@@ -20,6 +20,8 @@
         <td>${gl.description}</td>
         <td>${gl.created}</td>
         <td><a href="${pageContext.request.contextPath}/user/groups/details/${gl.id}">Szczegóły grupy</a></td>
+        <td><a href="${pageContext.request.contextPath}/user/groups/edit/${gl.id}">Edytuj grupę</a></td>
+        <td><a href="${pageContext.request.contextPath}/user/groups/delete/${gl.id}">Usuń grupę</a></td>
     </tr>
     </c:forEach>
 </table>
