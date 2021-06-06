@@ -19,8 +19,8 @@
     </tr>
 </table>
 <form:form action="/activity/delete/${activityToDelete.id}" method="post">
-    <button name="confirm" type="submit" value="delete">Usuń</button>
-    <button name="confirm" type="submit" value="cancel">Anuluj</button>
+    <button name="button" type="submit" value="delete">Usuń</button>
+    <button name="button" type="submit" value="cancel">Anuluj</button>
 </form:form>
 
 </body>

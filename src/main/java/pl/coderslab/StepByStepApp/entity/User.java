@@ -1,8 +1,8 @@
 package pl.coderslab.StepByStepApp.entity;
 
 import org.hibernate.validator.constraints.Length;
-import pl.coderslab.StepByStepApp.vidators.ValidationPassword;
-import pl.coderslab.StepByStepApp.vidators.ValidationUserDetails;
+import pl.coderslab.StepByStepApp.validators.ValidationPassword;
+import pl.coderslab.StepByStepApp.validators.ValidationUserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -39,10 +39,9 @@ public class User {
     private LocalDateTime created;
     private LocalDateTime updated;
     private Boolean enabled;
-    ;
     @OneToMany(mappedBy = "user")
     private List<Activity> activitiesList = new ArrayList<>();
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "user_groups")
     private List<Group> groupList = new ArrayList<>();
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

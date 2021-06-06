@@ -7,7 +7,7 @@
 <h2>Witaj ${user.firstName}, zrobiłeś już ${globalNumberOfSteps} kroków.</h2>
 <a href="${pageContext.request.contextPath}/user/activities">Moje aktywności</a>
 <a href="${pageContext.request.contextPath}/user/goals">Moje cele</a>
-<a href="${pageContext.request.contextPath}/user/groups">Moje grupy</a>
+<a href="${pageContext.request.contextPath}/user/groups/list">Moje grupy</a>
 <a href="${pageContext.request.contextPath}/user/friends">Znajomi</a>
 <a href="${pageContext.request.contextPath}/user/account/show">Moje konto</a>
 <sec:authorize access="hasRole('ADMIN')">

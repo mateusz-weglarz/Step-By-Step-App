@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import pl.coderslab.StepByStepApp.security.SpringDataUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -60,10 +59,11 @@ public class WebSecurityConfig {
                     .antMatchers("/").permitAll()
                     .antMatchers("/admin/**").hasRole("ADMIN")
                     .antMatchers("/user/**", "/activity/**").authenticated()
-                    .and().formLogin()
-                    .loginPage("/login").loginProcessingUrl("/login")
+                    .and().formLogin().loginPage("/login")
                     .defaultSuccessUrl("/user/dashboard", true)
-                    .and().logout().logoutSuccessUrl("/").permitAll()
+                    .and().logout().logoutUrl("/logout")
+                    .clearAuthentication(true).invalidateHttpSession(true)
+                    .logoutSuccessUrl("/").permitAll()
                     .and().exceptionHandling().accessDeniedPage("/403");
         }
     }

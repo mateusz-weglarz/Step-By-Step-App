@@ -63,7 +63,7 @@ public class UserService {
         activityService.removeActivitiesOfUser(user);
         groupService.removeUserFromGroups(user);
         roleRepository.removeUser(user.getId());
-        userRepository.deleteById(userId);
+        userRepository.deleteUserByUserId(userId);
     }
 
     public void updateUser(User userToUpdate) {

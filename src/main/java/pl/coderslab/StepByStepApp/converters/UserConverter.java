@@ -8,8 +8,7 @@ import pl.coderslab.StepByStepApp.service.UserService;
 @Component
 public class UserConverter implements Converter<String, User> {
 
-
-    private UserService userService;
+    private final UserService userService;
 
     public UserConverter(UserService userService) {
         this.userService = userService;
