@@ -1,5 +1,4 @@
-<h1>Lista aktywności, usunięcie, edycja(nazwa,dodanie zdjęcia)</h1>
-
+<h1>edycja(dodanie zdjęcia)</h1>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

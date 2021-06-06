@@ -29,4 +29,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u INNER JOIN u.groupList g where g.id=:id")
     List<User> findUsersByGroupId(Long id);
 
+    @Modifying
+    @Query(value = "DELETE FROM users WHERE id=:userId", nativeQuery = true)
+    void deleteUserByUserId(Long userId);
 }

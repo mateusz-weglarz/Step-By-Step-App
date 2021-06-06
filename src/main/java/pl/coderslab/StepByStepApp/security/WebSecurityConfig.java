@@ -59,10 +59,11 @@ public class WebSecurityConfig {
                     .antMatchers("/").permitAll()
                     .antMatchers("/admin/**").hasRole("ADMIN")
                     .antMatchers("/user/**", "/activity/**").authenticated()
-                    .and().formLogin()
-                    .loginPage("/login").loginProcessingUrl("/login")
+                    .and().formLogin().loginPage("/login")
                     .defaultSuccessUrl("/user/dashboard", true)
-                    .and().logout().logoutSuccessUrl("/").permitAll()
+                    .and().logout().logoutUrl("/logout")
+                    .clearAuthentication(true).invalidateHttpSession(true)
+                    .logoutSuccessUrl("/").permitAll()
                     .and().exceptionHandling().accessDeniedPage("/403");
         }
     }
