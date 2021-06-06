@@ -27,6 +27,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findTopFiveUsers();
 
     @Query("SELECT u FROM User u INNER JOIN u.groupList g where g.id=:id")
-    List<User> findUsersByGroupId(@Param("id") long id);
+    List<User> findUsersByGroupId(Long id);
 
 }

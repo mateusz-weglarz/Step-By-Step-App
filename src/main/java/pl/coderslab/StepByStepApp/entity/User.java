@@ -39,7 +39,6 @@ public class User {
     private LocalDateTime created;
     private LocalDateTime updated;
     private Boolean enabled;
-    ;
     @OneToMany(mappedBy = "user")
     private List<Activity> activitiesList = new ArrayList<>();
     @ManyToMany(fetch = FetchType.EAGER)

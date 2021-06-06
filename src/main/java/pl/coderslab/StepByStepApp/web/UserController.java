@@ -48,9 +48,4 @@ public class UserController {
         return "user/goals";
     }
 
-    @GetMapping("/groups")
-    public String getUserGroups() {
-        return "user/groups";
-    }
-
 }
