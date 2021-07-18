@@ -17,7 +17,7 @@ Step-By-Step-App is step counting app, using the MySQL database in conjunction w
 The latest stable version of the app is pushed on Heroku server and is accessible with [this link](https://stepp-by-stepp-app.herokuapp.com/).
 ### To start using app is required:
 1. Create account at [register page](https://stepp-by-stepp-app.herokuapp.com/register).
-2. Clone the repository on your computer and use the IDE to install the applications on your phone (requires development options on).
+2. Clone the [repository](https://github.com/mateusz-weglarz/Step-By-Step-App-For-Android) on your computer and use the IDE to install the applications on your phone (requires development options on).
 3. Log in to app on your phone with data used for registration.
 4. Enjoy using the app.
 ### Warning
